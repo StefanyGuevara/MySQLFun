@@ -14,5 +14,7 @@ namespace MySQLFun.Models
         }
   
         public DbSet<Bowler> Bowlers { get; set; }
+
+        public DbSet<Team> Team { get; set; }
     }
 }

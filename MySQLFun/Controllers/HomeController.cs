@@ -12,7 +12,7 @@ namespace MySQLFun.Controllers
 {
     public class HomeController : Controller
     {
-      
+
         private IBowlerRepository _repo { get; set; }
 
         //Constructor
@@ -30,7 +30,44 @@ namespace MySQLFun.Controllers
                 .ToList();
 
             return View(blah);
-        
+
         }
+
+        [HttpPost]
+        public IActionResult Create(Bowler blah)
+        {
+            _repo.AddBowler(blah);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int bowlerid)
+        {
+            var application = _repo.Bowlers.Single(x => x.BowlerID == bowlerid);
+            return View("AddEdit", application);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Bowler blah)
+        {
+            _repo.SaveChanges(blah);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int bowlerid)
+        {
+            var application = _repo.Bowlers.Single(x => x.BowlerID == bowlerid);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Bowler stuff)
+        {
+            _repo.DeleteBowler(stuff);
+            return RedirectToAction("Index");
+        }
+
     }
 }

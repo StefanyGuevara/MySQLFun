@@ -6,9 +6,17 @@
 
 <h1>Bowlers</h1>
 
+
+
 <ul>
     @foreach (var b in Model)
     {
-        <li>@b.BowlerID - @b.BowlerFirstName</li>
+        <li>@b.BowlerID - @b.BowlerFirstName - @b.BowlerMiddleInit - @b.BowlerLastName - @b.BowlerAddress 
+    - @b.BowlerCity - @b.BowlerState - @b.BowlerZip - @b.BowlerPhoneNumber</li>
+    
+<tr>
+    <td><a asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@b.BowlerID">Edit</a></td>
+    <td><a asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@b.BowlerID">Delete</a></td>
+</tr>
     }
 </ul>
